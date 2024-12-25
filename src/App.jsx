@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login"
 import "./App.css"
 import Header from "./Components/Header"
 import Footer from "./Components/Footer"
+import Api from "./api/Api"
 
 
 function App() {

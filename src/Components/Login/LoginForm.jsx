@@ -1,38 +1,54 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import Input from "../Forms/Input"
+import Button from "../Forms/Button"
+import useForm from "../../Hooks/useForm"
 
 export default function LoginForm(){
-    const [username,setUsername] = React.useState('')
-    const [password,setPassword] = React.useState('')
+    const username = useForm()
+    const password = useForm()
 
-    function handleSubmit(event){
-        event.preventDefault()
-        fetch("https://dogsapi.origamid.dev/json/jwt-auth/v1/token", {
-            method: "POST",
+
+    function handleSubmit(event) {
+        event.preventDefault();
+    
+        if (username.validate() && password.validate()) {
+          fetch('https://dogsapi.origamid.dev/json/jwt-auth/v1/token', {
+            method: 'POST',
             headers: {
-                "Content-Type":"application/json",
+              'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username,password})
-        }).then((response) => {
-            console.log(response)
-            return response.json()
-        }).then((json) => {
-            console.log(json)
-        })
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value,
+            }),            
+          })
+            .then((response) => {
+              console.log(response);
+              return response.json();
+            })
+            .then((json) => {
+              console.log(json);
+            });
+        }
     }
     return(
         <section>
             <h1>Login</h1>
             <form action="" onSubmit={(e) => handleSubmit(e)}>
-                <input
-                type="text"
-                value={username}
-                onChange={({target}) => setUsername(target.value)}/>
-                <input
-                type="text"
-                value={password}
-                onChange={({target}) => setPassword(target.value)}/>
-                <button type="submit">Enviar</button>
+                <Input 
+                    label="Usuário"
+                    type="text"
+                    name="username"
+                    {...username}
+                />
+                <Input 
+                    label="Senha"
+                    type="text"
+                    name="password"
+                    {...password}
+                />
+                <Button>Entrar</Button>
             </form>
             <Link to="/login/criar">Cadastro</Link>
         </section>
