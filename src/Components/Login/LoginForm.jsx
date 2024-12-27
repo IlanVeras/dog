@@ -13,6 +13,7 @@ export default function LoginForm(){
         event.preventDefault();
     
         if (username.validate() && password.validate()) {
+            console.log({username,password})
           fetch('https://dogsapi.origamid.dev/json/jwt-auth/v1/token', {
             method: 'POST',
             headers: {
