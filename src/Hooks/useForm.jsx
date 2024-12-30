@@ -8,24 +8,34 @@ const types = {
     },
 }
 
+//função que verifica os campos de emal/username e password
+//@params valor do input
 export default function useForm(type){
+    //estado que guarda o valor do input
     const [value,setValue] = React.useState('')
+    //estado que guarda o valor da mensagem de erro
     const [error,setError] = React.useState(null)
 
     function validate(value) {
+        //se nada for passado no input a verificação não será feita
         if (type === false) return true;
+        //caso o valor do input esteja vazio a mensagem de erro irá aparecer
         if (value.length === 0) {
           setError('Preencha um valor.');
           return false;
-        } else if (types[type] && !types[type].regex.test(value)) {
+        } 
+        //se o valor existir e ele não passar pela verificação do regex a mensagem de erro do regex irá aparecer
+        else if (types[type] && !types[type].regex.test(value)) {
           setError(types[type].message);
           return false;
         } else {
+          //se nada acima acontecer o erro não aparecerá
           setError(null);
           return true;
         }
       }
 
+      //função que permite escerever no input
       function onChange({ target }) {
         //caso exista um erro prévio ele irá sumir assim que a informação estiver sendo colocada
         if (error) validate(target.value);
