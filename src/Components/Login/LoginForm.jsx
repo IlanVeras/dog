@@ -3,39 +3,18 @@ import { Link } from "react-router-dom"
 import Input from "../Forms/Input"
 import Button from "../Forms/Button"
 import useForm from "../../Hooks/useForm"
-import { TOKEN_POST, USER_GET } from "../../api"
+import { UserContext } from "../../UserContext"
+import Error from "../Helper/Error"
+import styles from "./LoginForm.module.css"
+import stylesBtn from "../Forms/Button.module.css"
 
 export default function LoginForm(){
     //o hook do useForm é passado junto com suas propriedades
     const username = useForm()
     const password = useForm()
 
-    /*
-     *useEffect usado para verificar se existe um token no local storage e chama a função getUser se existir
-     * @param {string} token - toke obtido do localStorage
-     * @return {void}
-     */
-    React.useEffect(() => {
-      const token = window.localStorage.getItem('token')
-      if(token){
-        getUser(token)
-      }
-      return
-    },[])
+    const {userLogin,error,loading} = React.useContext(UserContext)
     
-
-    /*
-    *função que retorna um objeto com dados do usuáro a partir de um token
-    *@params {String} - token do localStorage
-    *response {Promise<Object>} @param: url => url de api.js
-    *json {Prmise<Object>} objeto com informações de usuário
-    */
-    async function getUser(token) {
-      const {url,options} = USER_GET(token)
-      const response = await fetch(url,options)
-      const json = await response.json()
-      console.log(json)
-    }
 
     /*
     *função de login
@@ -43,37 +22,16 @@ export default function LoginForm(){
     */
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(event)
         //condição que verifica com o método validate que vem do hook useForm
         //verifica-se se username e password pasam o validate
         if (username.validate() && password.validate()) {
-          //guarda-se a url e options com a ajuda da função TOKEN_POST de api.js
-          const {url,options} = TOKEN_POST({
-            username:username.value,
-            password: password.value
-          })
-          console.log({url,options})
-          //faz-se o fetch
-          /*
-          *const {<Promise>} faz um fetch com
-          *@params {String} - valor do endpoint de login
-          *@params {Object} - valor das opções do header da requisição do fetch
-          */
-          const response = await fetch(url,options)
-          // const {<Promise>} pega o valor do fetch e mostra um objeto com as informações do user
-          const json = await response.json()
-          console.log(response)
-          console.log(json)
-          //AQUI EU SALVO O TOKEN NO FRONT-END
-          window.localStorage.setItem('token', json.token)
-          //verifica-se se o token já exsite no localstore
-          getUser(json.token)
+          userLogin(username.value, password.value)
         }
     }
     return(
-        <section>
-            <h1>Login</h1>
-            <form action="" onSubmit={(e) => handleSubmit(e)}>
+        <section className="animeLeft">
+            <h1 className="title">Login</h1>
+            <form action="" onSubmit={(e) => handleSubmit(e)} className={styles.form}>
                 <Input 
                     label="Usuário"
                     type="text"
@@ -86,9 +44,16 @@ export default function LoginForm(){
                     name="password"
                     {...password}
                 />
-                <Button>Entrar</Button>
+                {loading ? <Button disabled>Carregando...</Button> : <Button>Entrar</Button>}
+                {error && <Error error={error}></Error>}
             </form>
-            <Link to="/login/criar">Cadastro</Link>
+            <Link to='/login/perdeu' className={styles.perdeu}>Perdeu a Senha</Link>
+           <div className={styles.cadastro}>
+                <h2 className={styles.subtitle}>Cadastre-se</h2>
+                <p>Ainda não possui conta? Cadastre-se no site.</p>
+                <Link className={stylesBtn.button} to="/login/criar">Cadastro</Link>
+           </div>
+            
         </section>
     )
 }
