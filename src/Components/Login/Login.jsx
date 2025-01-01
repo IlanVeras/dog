@@ -5,6 +5,7 @@ import LoginCreate from "./LoginCreate";
 import LoginPasswordLost from "./LoginPasswordLost";
 import LoginPasswordReset from "./LoginPasswordReset";
 import { UserContext } from "../../UserContext";
+import styles from "./login.module.css"
 
 export default function Login(){
     const {login} = React.useContext(UserContext)
@@ -13,13 +14,15 @@ export default function Login(){
         return <Navigate to="/conta"/>
     }
     return(
-        <div>
-            <Routes>
-                <Route path="/" element={<LoginForm/>}/>
-                <Route path="criar" element={<LoginCreate/>}/>
-                <Route path="perdeu" element={<LoginPasswordLost/>}/>
-                <Route path="resetar" element={<LoginPasswordReset/>}/>
-            </Routes>
-        </div>
+        <section className={styles.login}>
+            <div className={styles.forms}>
+                <Routes>
+                    <Route path="/" element={<LoginForm/>}/>
+                    <Route path="criar" element={<LoginCreate/>}/>
+                    <Route path="perdeu" element={<LoginPasswordLost/>}/>
+                    <Route path="resetar" element={<LoginPasswordReset/>}/>
+                </Routes>
+            </div>
+        </section>
     )
 }
