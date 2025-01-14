@@ -22,8 +22,8 @@ export default function UserStorage({children}){
             setLogin(false)
             window.localStorage.removeItem('token')
             console.log("tttt")
-            // navigate('/login')
-            window.location.href = '/login'
+            navigate('/login')
+            // window.location.href = '/login'
     },[])
 
     /*
