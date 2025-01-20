@@ -87,3 +87,9 @@ button, input{
     display: block;
     margin-bottom: 1rem;
 } */
+
+.icon-svg-temp{
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+}
