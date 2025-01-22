@@ -7,6 +7,7 @@ export default function UserHeader(){
     const [title,setTitle] = React.useState('')
     const location = useLocation()
 
+    //toda vez que o location mudar o valor do header deve mudar junto dependendo da url de location
     useEffect(() => {
         const {pathname} = location
         switch(pathname){
