@@ -45,6 +45,7 @@ export function USER_GET(token){
     }
 }
 
+// Função que cria user
 export function USER_POST(body) {
     return {
       url: API_URL + '/api/user',
@@ -58,6 +59,7 @@ export function USER_POST(body) {
     };
 }
 
+//função que posta uma foto
 export function PHOTO_POST(formData,token){
     return{
         url: API_URL + '/api/photo',
@@ -71,6 +73,7 @@ export function PHOTO_POST(formData,token){
     }
 }
 
+//função que pega um total de fotos específico de um user específico
 export function PHOTOS_GET({page,total,user}){
     return{
         url: `${API_URL}/api/photo/?page=${page}&_total=${total}&-user=${user}`,
@@ -78,5 +81,32 @@ export function PHOTOS_GET({page,total,user}){
             method: 'GET',
             cache: 'no-store'
         },
+    }
+}
+
+//função que mostra uma foto específica
+export function PHOTO_GET(id){
+    return{
+        url: `${API_URL}/api/photo/${id}`,
+        options: {
+            method: 'GET',
+            cache: 'no-store'
+        }
+    }
+}
+
+//função que posta comentário
+export function COMMENT_POST(id,body){
+    return{
+        url: `${API_URL}/api/comment/${id}`,
+        options: {
+            method: 'POST',
+            cache: 'no-store',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + window.localStorage.getItem('token')
+            },
+            body: JSON.stringify(body)
+        }
     }
 }
