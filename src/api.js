@@ -76,7 +76,7 @@ export function PHOTO_POST(formData,token){
 //função que pega um total de fotos específico de um user específico
 export function PHOTOS_GET({page,total,user}){
     return{
-        url: `${API_URL}/api/photo/?page=${page}&_total=${total}&-user=${user}`,
+        url: `${API_URL}/api/photo/?_page=${page}&_total=${total}&_user=${user}`,
         options: {
             method: 'GET',
             cache: 'no-store'
