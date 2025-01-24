@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PhotoComments from "./PhotoComments";
 import { UserContext } from "../../UserContext";
 import PhotoDelete from "./PhotoDelete";
+import Image from "../Helper/Image";
 
 export default function PhotoContent({data}){
     //user do userContext sempre será o usuário logado
@@ -13,7 +14,7 @@ export default function PhotoContent({data}){
     return(
         <div className={styles.photo}>
             <div className={styles.img}>
-                <img src={photo.src} alt={photo.title}/>
+                <Image src={photo.src} alt={photo.title}/>
             </div>
             <div className={styles.details}>
                 <div>
