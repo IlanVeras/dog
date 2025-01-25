@@ -24,7 +24,7 @@ export default function PhotoContent({data,single}){
                         ?
                         <PhotoDelete id={photo.id}/> 
                         : 
-                        <Link to={`/perfil/${photo.authot}`}>@{photo.author}</Link>} 
+                        <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>} 
                         <span className={styles.visualizacoes}>{photo.acessos}</span>
                     </p>
                     <h1 className="title">
