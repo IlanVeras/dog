@@ -10,6 +10,7 @@ import Api from "./api/Api"
 import UserStorage from "./UserContext"
 import User from "./Components/User/User"
 import ProtectedRoute from "./Components/Helper/ProtectedRouter"
+import Photo from "./Components/Photo/Photo"
 
 
 
@@ -28,7 +29,7 @@ function App() {
                 <ProtectedRoute>
                 <User />
               </ProtectedRoute>}/>
-              <Route path="/teste" element={<h1>TESTE</h1>}/>
+              <Route path="foto/:id" element={<Photo/>}/>
             </Routes>
           <Footer/>
         </UserStorage>

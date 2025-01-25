@@ -6,13 +6,13 @@ import { UserContext } from "../../UserContext";
 import PhotoDelete from "./PhotoDelete";
 import Image from "../Helper/Image";
 
-export default function PhotoContent({data}){
+export default function PhotoContent({data,single}){
     //user do userContext sempre será o usuário logado
     const user = React.useContext(UserContext)
     const {photo,comments} = data
     console.log(photo)
     return(
-        <div className={styles.photo}>
+        <div className={`${styles.photo} ${single ? styles.single : ''}`}>
             <div className={styles.img}>
                 <Image src={photo.src} alt={photo.title}/>
             </div>
@@ -36,7 +36,7 @@ export default function PhotoContent({data}){
                         Number(photo.idade) === 1 ? `${photo.idade} ano` : `${photo.idade} anos`
                         }</li>
                     </ul>
-                    <PhotoComments id={photo.id} comments={comments}/>
+                    <PhotoComments single={single} id={photo.id} comments={comments}/>
                 </div>
             </div>
         </div>
