@@ -7,6 +7,7 @@ import { UserContext } from "../../UserContext"
 import Error from "../Helper/Error"
 import styles from "./LoginForm.module.css"
 import stylesBtn from "../Forms/Button.module.css"
+import Head from "../Helper/Head"
 
 export default function LoginForm(){
     //o hook do useForm é passado junto com suas propriedades
@@ -30,6 +31,7 @@ export default function LoginForm(){
     }
     return(
         <section className="animeLeft">
+            <Head title="Login"/>
             <h1 className="title">Login</h1>
             <form action="" onSubmit={(e) => handleSubmit(e)} className={styles.form}>
                 <Input 
