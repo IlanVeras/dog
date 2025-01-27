@@ -23,7 +23,7 @@ export default function LoginPasswordLost(){
         }
     }
     return(
-        <section>
+        <section className="animeLeft">
             <Head title='Perdeu a Senha'/>
             <h1 className="title">Perdeu a senha?</h1>
             {data ? <p style={{color:'#4c1'}}>{data}</p> : (

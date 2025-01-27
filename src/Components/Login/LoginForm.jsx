@@ -47,7 +47,7 @@ export default function LoginForm(){
                     {...password}
                 />
                 {loading ? <Button disabled>Carregando...</Button> : <Button>Entrar</Button>}
-                {error && <Error error={error}></Error>}
+                {error && <Error error={error && 'Dados incorretos'}></Error>}
             </form>
             <Link to='/login/perdeu' className={styles.perdeu}>Perdeu a Senha</Link>
            <div className={styles.cadastro}>
