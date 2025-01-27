@@ -107,3 +107,7 @@ button, input{
 .AppBody{
     flex: 1;
 }
+
+.victoryContainer{
+    height: initial !important;
+}

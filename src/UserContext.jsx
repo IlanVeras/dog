@@ -34,7 +34,7 @@ export default function UserStorage({children}){
         const {url,options} = USER_GET(token)
         const response = await fetch(url,options)
         const json = await response.json()
-        console.log(json)
+        // console.log(json)
         setData(json)
         setLogin(true)
     }
@@ -44,7 +44,7 @@ export default function UserStorage({children}){
     *event {Object}
     */
     async function userLogin(username,password) {
-        console.log(username)
+        // console.log(username)
         try {
             setError(null)
             setLoading(true)
@@ -60,14 +60,14 @@ export default function UserStorage({children}){
             const {token} = await tokenRes.json()
             //método de guardar o token com name 'token' no local storage
             window.localStorage.setItem('token', token)
-            console.log(token)
+            // console.log(token)
             //chamada da função que valida o token
             await getUser(token)
-            console.log("indo para conta")
+            // console.log("indo para conta")
             navigate('/conta')
-            console.log("cheguei na conta")
+            // console.log("cheguei na conta")
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             setError(err.message)
             setLoading(false)
         }finally{
