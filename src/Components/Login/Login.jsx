@@ -5,7 +5,7 @@ import LoginCreate from "./LoginCreate";
 import LoginPasswordLost from "./LoginPasswordLost";
 import LoginPasswordReset from "./LoginPasswordReset";
 import { UserContext } from "../../UserContext";
-import styles from "./login.module.css"
+import styles from "./Login.module.css"
 import NotFound from "../NotFound";
 
 export default function Login(){
