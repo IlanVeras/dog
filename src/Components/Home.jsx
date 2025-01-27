@@ -1,6 +1,6 @@
 import React from "react";
 import UserPost from "../api/endpoints/UserPost";
-import Api from "../api/Api";
+import Api from "../api/TesteApi";
 import Feed from "./Feed/Feed";
 import Loading from "./Helper/Loading";
 import Head from "./Helper/Head";
